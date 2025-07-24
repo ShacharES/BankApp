@@ -2,13 +2,11 @@ package util
 
 import (
 	"math/rand"
-	"time"
 )
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 func init() {
-	rand.Seed(time.Now().UnixNano())
 
 }
 
