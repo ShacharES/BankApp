@@ -51,3 +51,11 @@ jobs:
 
     - name: Test
       run: make test
+
+    - name: Debug – list running processes
+      if: always()
+      run: |
+        echo "Processes still running after tests:"
+        ps -aux
+        echo "Open ports:"
+        sudo lsof -i -P -n
