@@ -211,7 +211,7 @@ func randomUser(t *testing.T) (user db.User, password string) {
 }
 
 func requireBodyMatchUser(t *testing.T, body *bytes.Buffer, user db.User) {
-	var gotUser createUserResponse
+	var gotUser db.User
 	err := json.Unmarshal(body.Bytes(), &gotUser)
 	require.NoError(t, err)
 
