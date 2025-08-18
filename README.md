@@ -1,6 +1,6 @@
 # BankApp
 
-A simple banking backend project built as part of the **Backend Masterclass** course (Golang + PostgreSQL + Kubernetes + gRPC).  
+A simple banking backend project for learning purposes
 
 ## Features
 - Create and manage accounts  
