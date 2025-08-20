@@ -43,10 +43,13 @@ jobs:
         ECR_REPOSITORY: bankapp
         IMAGE_TAG: ${{ github.sha }}
       run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t latest .
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
     
-    - name: Deploy image to EKS
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name bank-app --region eu-central-1
+
+    - name: Deploy image to Amazon EKS
       run: |
           kubectl apply -f eks/aws-auth.yaml
           kubectl apply -f eks/deployment.yaml
