@@ -69,6 +69,16 @@ func (server *Server) createUser(ctx *gin.Context) {
 		return
 	}
 
+	_, err = server.store.CreateAccount(ctx, db.CreateAccountParams{
+		Owner:    user.Username,
+		Balance:  0,
+		Currency: "USD",
+	})
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+		return
+	}
+
 	rsp := newUserResponse(user)
 	ctx.JSON(http.StatusOK, rsp)
 }
