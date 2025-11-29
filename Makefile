@@ -6,6 +6,9 @@ postgres:
 	-p 5432:5432 \
 	-d postgres:14
 
+rundb:
+	 docker start postgres14
+
 createdb:
 	 docker exec -it postgres14 createdb --username=root --owner=root bankapp
 
