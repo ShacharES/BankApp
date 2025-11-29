@@ -10,7 +10,7 @@ kind: Ingress
 metadata:
   name: bank-app-ingress
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt"
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
   rules:
@@ -26,5 +26,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - "api.bank-app.click"
-    secretName: bank-app-tls-cert
+    - api.bank-app.click
+    secretName: bank-app-api-cert
