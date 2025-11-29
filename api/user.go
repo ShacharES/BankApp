@@ -115,6 +115,18 @@ func (server *Server) loginUser(ctx *gin.Context) {
 		return
 	}
 
+	maxAge := int(server.config.AccessTokenDuration.Seconds())
+	ctx.SetSameSite(http.SameSiteLaxMode)
+	ctx.SetCookie(
+		"access_token", // name
+		accessToken,    // value
+		maxAge,         // seconds to live
+		"/",            // path
+		"",             // domain (ריק = הדומיין הנוכחי; בפרודקשן לשים example.com)
+		false,          // secure: ב־https לשים true
+		true,           // httpOnly: חובה בשביל אבטחה
+	)
+
 	rsp := loginUserResponse{
 		AccessToken: accessToken,
 		User:        newUserResponse(user),
